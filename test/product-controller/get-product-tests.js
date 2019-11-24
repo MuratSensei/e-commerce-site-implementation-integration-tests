@@ -27,6 +27,7 @@ describe("E-Commerce-Site-API GET /product/{productId}", () => {
         let getProductResponse = await axios.get(config.eCommerceSiteApi + "/product/" + createProductResponse.data.result.productId);
 
         expect(getProductResponse.status).to.equal(200);
+        expect(getProductResponse.data.result.id).not.null;
         expect(getProductResponse.data.result.name).to.equal(createProductModel.name);
         expect(getProductResponse.data.result.category).to.equal(createProductModel.category);
         expect(getProductResponse.data.result.description).to.equal(createProductModel.description);
@@ -38,5 +39,6 @@ describe("E-Commerce-Site-API GET /product/{productId}", () => {
         expect(getProductResponse.data.result.gender).to.equal(createProductModel.gender);
         expect(getProductResponse.data.result.sellerUsername).to.equal(createProductModel.sellerUsername);
         expect(getProductResponse.data.result.createdDate).not.null;
+        expect(getProductResponse.data.result.deleted).to.false;
     });
 });
